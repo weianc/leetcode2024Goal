@@ -4,14 +4,17 @@ class Solution {
         Stack<String> stk = new Stack();
         String[] arr = path.split("/");
         for(String s : arr){
-            // 1. s == "..", should pop element from stk because we want to go back to prev level of directory
+            // 1. s == "..", should pop element from stk 
+            // because we want to go back to previous level of directory
             if(s.equals("..")){
                 if(!stk.empty()){
                     stk.pop();
                 }
             }
+            // 2. s == "." or s is empty
+            // skip this iteration 
+            // because . and empty should not present in simplify path
             else if (s.equals(".") || s.isEmpty()){
-                // do not need to do anything. skip
                 continue;
             }
             else {
