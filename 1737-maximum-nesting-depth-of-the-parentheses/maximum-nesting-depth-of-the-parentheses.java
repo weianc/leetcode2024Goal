@@ -11,7 +11,6 @@ class Solution {
             else if (c == ')'){
                 left--;
             }
-
             globalMax = Math.max(globalMax, left);
         }
 
