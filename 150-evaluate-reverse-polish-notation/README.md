@@ -51,3 +51,16 @@
 	<li><code>1 &lt;= tokens.length &lt;= 10<sup>4</sup></code></li>
 	<li><code>tokens[i]</code> is either an operator: <code>&quot;+&quot;</code>, <code>&quot;-&quot;</code>, <code>&quot;*&quot;</code>, or <code>&quot;/&quot;</code>, or an integer in the range <code>[-200, 200]</code>.</li>
 </ul>
+
+<h2>Solution</h2>
+<p>逆波蘭表示式特點是將operator擺在數字之後</p>
+
+<pre>
+Ex. 34+2*
+
+遇到 3，推入堆疊：[3]
+遇到 4，推入堆疊：[3, 4]
+遇到 +，從堆疊彈出 3 和 4 進行相加，結果 7 推回堆疊：[7]
+遇到 2，推入堆疊：[7, 2]
+遇到 *，從堆疊彈出 7 和 2 進行相乘，結果 14 推回堆疊：[14]
+</pre>
