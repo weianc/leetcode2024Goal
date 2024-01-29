@@ -11,10 +11,7 @@ class Solution {
             else if (c == ')'){
                 left--;
             }
-            else {// everything else
-                // update local num with globalMax
-                
-            }
+
             globalMax = Math.max(globalMax, left);
         }
 
