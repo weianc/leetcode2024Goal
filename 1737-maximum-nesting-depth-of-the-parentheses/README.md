@@ -43,3 +43,9 @@
 	<li><code>s</code> consists of digits <code>0-9</code> and characters <code>&#39;+&#39;</code>, <code>&#39;-&#39;</code>, <code>&#39;*&#39;</code>, <code>&#39;/&#39;</code>, <code>&#39;(&#39;</code>, and <code>&#39;)&#39;</code>.</li>
 	<li>It is guaranteed that parentheses expression <code>s</code> is a <strong>VPS</strong>.</li>
 </ul>
+
+<h2>算法思路</h2>
+遍歷字符串:
+1. 遇到左括號. 深度++
+2. 遇到右括號. 深度--
+3. 每個Iteration固定更新最大值
