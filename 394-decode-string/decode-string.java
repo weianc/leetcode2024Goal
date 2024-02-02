@@ -53,27 +53,11 @@ class Solution {
 
         // pop out all the element
         String ans = "";
-        Integer repeatTimes = 0;
-        String repeatStr = "";
         while(!stk.isEmpty())
         {
             Object obj = stk.pop();
-            if(obj instanceof Integer)
-            {
-                repeatTimes = (Integer) obj;
-            }
-            else 
-            {
-                repeatStr = obj.toString() + repeatStr;
-            }
-
-            if (repeatTimes != 0){
-                ans = repeatStringByTimes(repeatStr, repeatTimes) + ans;
-                // reset repeatTimes and repeatStr
-                repeatStr = "";
-                repeatTimes = 0;
-            }
+            ans = obj.toString() + ans;
         }
-        return ans + repeatStr;
+        return ans;
     }
 }
