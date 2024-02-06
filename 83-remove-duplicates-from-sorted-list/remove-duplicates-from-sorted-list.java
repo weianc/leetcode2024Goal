@@ -14,7 +14,7 @@ class Solution {
         dummy.next = head;
         ListNode prev = head;
         ListNode cur = head;
-        
+        if(head == null) return null;
         while(cur != null){
             if(cur.val == prev.val){
                 cur = cur.next;
@@ -27,10 +27,8 @@ class Solution {
                 cur = cur.next;
             }
         }
-        if(prev != null){
-            prev.next = cur;
-        }
-
+        // 断开与后面重复元素的连接
+        prev.next = null;
         return dummy.next;
     }
 }
