@@ -27,7 +27,7 @@ class Solution {
             }
 
             // check if window should shrink
-            while(r - l >= s1.length()){
+            while(r - l == s1.length()){
                 // check if current window string match requirement
                 if(valid == need.size()){
                     return true;
