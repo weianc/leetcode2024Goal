@@ -12,23 +12,23 @@ class Solution {
     public ListNode deleteDuplicates(ListNode head) {
         ListNode dummy = new ListNode(0);
         dummy.next = head;
-        ListNode prev = head;
-        ListNode cur = head;
-        if(head == null) return null;
-        while(cur != null){
-            if(cur.val == prev.val){
-                cur = cur.next;
+        ListNode slow = head;
+        ListNode fast = head;
+
+        while(fast != null){
+            // 1. 當快指針和慢指針的數值不同時
+            // 我們知道當前數字需要被保留
+            // 移動慢指針並且賦值給他
+            if(fast.val != slow.val){
+                slow.next = fast;
+                slow = slow.next;
             }
-            else {
-                // need to connect prev with cur
-                prev.next = cur;
-                // move prev to cur
-                prev = cur;
-                cur = cur.next;
-            }
+            fast = fast.next;
         }
-        // 断开与后面重复元素的连接
-        prev.next = null;
+        // complete slow pointer with null in the end
+        if(slow != null){
+            slow.next = null;
+        }
         return dummy.next;
     }
 }
