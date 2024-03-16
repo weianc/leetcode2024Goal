@@ -23,10 +23,6 @@ class Solution {
 
         String res = "";
         int i = s.length();
-        if(stk.isEmpty())
-        {
-            return s;
-        }
         while(!stk.isEmpty()){
             int index = stk.pop();
             String substring = s.substring(index+1, i); // do not include i
