@@ -20,7 +20,7 @@ class Solution {
             }
             // need to consider last char in string last char is isDigit
             // or this will not be added into stack
-            if((!Character.isDigit(c) && c != ' ') || i == s.length() - 1) // sign
+            if(set.contains(c) || i == s.length() - 1) // sign
             {
                 int pre;
                 if(sign == '+'){
