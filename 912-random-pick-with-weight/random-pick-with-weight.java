@@ -17,13 +17,8 @@ class Solution {
             return segment.get(key);
         }
         int randomNum = rnd.nextInt(sum);
-        System.out.println(randomNum);
         int startBound = this.segment.floorKey(randomNum);
-        //Integer endBound = this.segment.ceilingKey(randomNum);
-
         return this.segment.get(startBound);
-
-        
     }
 }
 
