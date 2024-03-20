@@ -5,18 +5,25 @@ class Solution {
 
     public Solution(int[] w) {
         for(int i = 0; i < w.length; i++){
-            sum += w[i];
             segment.put(sum, i);
+            sum += w[i];
         }
     }
     
     public int pickIndex() {
         Random rnd = new Random();
-        int randomNum = rnd.nextInt(sum); // sum must larger than 0
-        //System.out.println(randomNum);
-        //int startBound = this.segment.floorKey(randomNum);
-        Integer endBound = this.segment.higherKey(randomNum);
-        return this.segment.get(endBound);
+        if(sum == 0) {
+            int key = segment.firstKey();
+            return segment.get(key);
+        }
+        int randomNum = rnd.nextInt(sum);
+        System.out.println(randomNum);
+        int startBound = this.segment.floorKey(randomNum);
+        //Integer endBound = this.segment.ceilingKey(randomNum);
+
+        return this.segment.get(startBound);
+
+        
     }
 }
 
