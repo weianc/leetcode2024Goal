@@ -10,10 +10,6 @@ class Solution {
                 // 如果s[i+1, j]和s[i,j-1]都不是palindrome
                 // 表示不符合情況
                 return isPalindrome(s, i+1, j) || isPalindrome(s, i, j-1);
-                // if(!isPalindrome(s, i+1, j) && !isPalindrome(s, i, j-1))
-                // {
-                //     return false;
-                // }
             }
             i++;
             j--;
