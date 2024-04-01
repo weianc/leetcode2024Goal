@@ -12,44 +12,24 @@ class Solution {
             }
         });
 
-        if(intervals.length <= 1){
-            return intervals;
-        }
-        int start = intervals[0][0];
-        int end = intervals[0][1];
-
-        for(int i = 1; i < intervals.length; i++){
-            int[] intv = intervals[i];
-            int[] prev = {start, end};
-            // safely assume start1 <= start2
-            // 1. merge: intv[1] <= end
-            if(intv[1] < end){
-                // current interval completely included. Can be added to result
-            } 
-            // intv[1] > end
-            else if(intv[0] > end){
-                // not overlap. Update start and end
-                // add previous interval to res
-                res.add(prev);
-                start = intv[0];
-                end = intv[1];
+        if(intervals.length <= 1) return intervals;
+        // only update last item when max end point has been changed.
+        // add the first item into res
+        res.add(intervals[0]);
+        for(int i = 0; i < intervals.length; i++){
+            int[] last = res.get(res.size()-1);
+            int[] cur = intervals[i];
+            // check if current intv end is larger than last interval end
+            // overlap situation. merge
+            if(cur[0] <= last[1]){
+                // modify last to include
+                last[1] = Math.max(cur[1], last[1]);
             }
-            else { // intv[0] < end
-                // overlap but not covered, update end with intv[1]
-                end = intv[1];
-            }
-            if(i == intervals.length - 1){
-                int[] cur = {start, end};
+            else {
+                // no overlap, cur[0] > last[1]
                 res.add(cur);
             }
         }
-
-        
-        
-        int[][] ans = new int[res.size()][2];
-        for(int i = 0; i < res.size(); i++){
-            ans[i] = res.get(i);
-        }
-        return ans;
+        return res.toArray(new int[res.size()][2]);
     }
 }
