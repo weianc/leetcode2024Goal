@@ -1,13 +1,12 @@
 class Solution {
     public int shortestPathBinaryMatrix(int[][] grid) {
-        if(grid.length == 0){
+        if(grid.length == 0 || grid[0][0] != 0){
             return -1;
         }
         int n = grid.length;
         Queue<int[]> q = new LinkedList<>();
         boolean[][] visited = new boolean[n][n];
         int[] origin = {0, 0};
-        if(grid[0][0] != 0) return -1;
         q.offer(origin);
         int steps = 0;
 
