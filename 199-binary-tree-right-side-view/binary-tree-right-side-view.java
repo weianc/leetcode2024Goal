@@ -14,28 +14,25 @@
  * }
  */
 class Solution {
-    // BFS solution
     public List<Integer> rightSideView(TreeNode root) {
         List<Integer> res = new ArrayList<>();
-        if(root == null) return res;
-        Queue<TreeNode> q = new LinkedList<>();
-        q.offer(root);
-        while(!q.isEmpty()){
-            int layerSize = q.size();
-            for(int i = 0; i < layerSize; i++){
-                // take the first one
-                TreeNode cur = q.poll();
-                if(i == 0){
-                    res.add(cur.val);
-                }
-                if(cur.right != null){
-                    q.offer(cur.right);
-                }
-                if(cur.left != null){
-                    q.offer(cur.left);
-                }
-            }
-        }
+        traverse(root, res, 0);
         return res;
+    }
+
+    private void traverse(TreeNode root, List<Integer> res, int depth){
+        // preorder traversal: root, right, left
+        if(root == null) return;
+        if(depth >= res.size()){
+            // 表示本層還沒加過
+            res.add(root.val);
+        }
+        if(root.right != null){
+            traverse(root.right, res, depth + 1);
+        }
+
+        if(root.left != null){
+            traverse(root.left, res, depth + 1);
+        }
     }
 }
