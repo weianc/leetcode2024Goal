@@ -6,8 +6,9 @@ class Solution {
         int n = grid.length;
         Queue<int[]> q = new LinkedList<>();
         boolean[][] visited = new boolean[n][n];
-        int[] origin = {0, 0};
-        q.offer(origin);
+
+        q.offer(new int[]{0, 0});
+        visited[0][0] = true;
         int steps = 0;
 
         // 8 directions
@@ -28,14 +29,13 @@ class Solution {
                 for(int d = 0; d < 8; d++){
                     int nx = curX + dx[d];
                     int ny = curY + dy[d];
-                    if(isBounded(nx,  ny, n) && !visited[curX][curY] && grid[nx][ny] == 0){
+                    if(isBounded(nx,  ny, n) && !visited[nx][ny] && grid[nx][ny] == 0){
                         q.offer(new int[]{nx, ny});
+                        visited[nx][ny] = true;
                     }
                 }
-                visited[curX][curY] = true;
             }
         }
-
         return -1;
     }
 
