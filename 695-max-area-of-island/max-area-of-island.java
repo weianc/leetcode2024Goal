@@ -8,7 +8,7 @@ class Solution {
         int max = 0;
         for(int r = 0; r < m; r++){
             for(int c = 0; c < n; c++){
-                if(grid[r][c] == 1){
+                if(grid[r][c] == 1 && !visited[r][c]){
                     max = Math.max(max, traverse(grid, r, c, visited, m, n));
                 }
             }
