@@ -37,7 +37,7 @@ class Solution {
             if(num < 0){
                 num += 26;
             }
-            char c =  ascii[num];
+            char c =  (char) ('a' + num);
             
             pattern.append(c);
         }
