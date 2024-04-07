@@ -1,16 +1,10 @@
 class Solution {
     public List<List<String>> groupStrings(String[] strings) {
-        char[] ascii = new char[26];
-        int count = 0;
-        for(char c = 'a'; c <= 'z'; c++){
-            ascii[count++] = c;
-        }
-
         Map<String, List<String>> map = new HashMap<>();
         List<List<String>> res = new ArrayList<>();
         for(int i = 0; i < strings.length; i++){
             String s = strings[i];
-            String p = pattern(s, ascii);
+            String p = pattern(s);
             if(!map.containsKey(p)){
                 map.put(p, new ArrayList<String>());
             }
@@ -24,7 +18,7 @@ class Solution {
         return res;
     }
 
-    private String pattern(String s, char[] ascii){
+    private String pattern(String s){
         StringBuilder pattern = new StringBuilder();
         char[] arr = s.toCharArray();
         int diff = -1;
