@@ -41,8 +41,7 @@ class Solution {
             
             pattern.append(c);
         }
-        String ans = pattern.toString();
-        System.out.println("s: " + s + ", pattern: " + ans);
-        return ans;
+
+        return pattern.toString();
     }
 }
