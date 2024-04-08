@@ -40,8 +40,5 @@ class Solution {
         else if (root.val < target){
             traverse(root.right, target);
         }
-        else {
-            return;
-        }
     }
 }
