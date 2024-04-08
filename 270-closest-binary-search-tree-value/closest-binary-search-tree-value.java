@@ -14,57 +14,34 @@
  * }
  */
 class Solution {
-    double diff = Double.MAX_VALUE;
-    int value = Integer.MAX_VALUE;
+    // Only need to record node value
+    // because we can get difference from node.val and target
+    int nodeVal = Integer.MAX_VALUE;
     public int closestValue(TreeNode root, double target) {
         traverse(root, target);
-        return value;
+        return nodeVal;
     }
 
     private void traverse(TreeNode root, double target){
         if(root == null) return;
-        if(diff > Math.abs(root.val - target)){
-            diff = Math.abs(root.val - target);
-            value = root.val;
+        if (Math.abs(nodeVal - target) > Math.abs(root.val - target)){
+            nodeVal = root.val;
         }
-        else if (diff == Math.abs(root.val - target)){
-            if (value > root.val){
-                value = root.val;
+        else if (Math.abs(nodeVal - target) == Math.abs(root.val - target)){
+            if (nodeVal > root.val){
+                nodeVal = root.val;
             }
         }
 
         if (root.val > target){
-            if(root.left != null){
-                traverse(root.left, target);
-            }
-            else {
-                // no left child
-                if(diff > Math.abs(root.val - target)){
-                    diff = Math.abs(root.val - target);
-                    value = root.val;
-                }
-                else if (diff == Math.abs(root.val - target)){
-                    if (value > root.val){
-                        value = root.val;
-                    }
-                }
-            }
+            // 必定從左子樹找答案
+            traverse(root.left, target);
         }
         else if (root.val < target){
-            if(root.right != null){
-                traverse(root.right, target);
-            }
-            else {
-                if(diff > Math.abs(root.val - target)){
-                    diff = Math.abs(root.val - target);
-                    value = root.val;
-                }
-                else if (diff == Math.abs(root.val - target)){
-                    if (value > root.val){
-                        value = root.val;
-                    }
-                }
-            }
+            traverse(root.right, target);
+        }
+        else {
+            return;
         }
     }
 }
