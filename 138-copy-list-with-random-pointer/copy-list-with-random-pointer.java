@@ -14,29 +14,25 @@ class Node {
 */
 
 class Solution {
-    // DFS
+    // 需要一個visited map紀錄拜訪過的節點
+    private Map<Node, Node> nodeMap = new HashMap<>();
     public Node copyRandomList(Node head) {
-        // 对于数据结构复制，甭管他怎么变，你就记住最简单的方式：一个哈希表 + 两次遍历。
-        // hashmap: 原始節點跟新節點的mapping
-        Map<Node, Node> nodeMapping = new HashMap<>();
-        Node cur = head;
-        // 第一輪: 複製節點
-        while(cur != null){
-            Node copy = new Node(cur.val);
-            nodeMapping.put(cur, copy);
-            cur = cur.next;
+        // 1. 遞迴出口
+        if(head == null) return null;
+        if(nodeMap.containsKey(head)){
+            return nodeMap.get(head);
         }
 
-        // 第二輪: 複製pointer
-        for(Node ori : nodeMapping.keySet()){
-            Node copyNode = nodeMapping.get(ori);
-            Node copyNext = nodeMapping.get(ori.next);
-            Node copyRandom = nodeMapping.get(ori.random);
-            copyNode.next = copyNext;
-            copyNode.random = copyRandom;
-        }
+        // 2. 創造copy節點 , preorder traversal
+        Node copy = new Node(head.val);
+        nodeMap.put(head, copy);
 
-        // return new head
-        return nodeMapping.get(head);
+        // 3. 接下來分別traverse next and random pointer
+        copy.next = copyRandomList(head.next);
+        copy.random = copyRandomList(head.random);
+
+        // 4. 回傳head的對應節點
+        return copy;
+
     }
 }
