@@ -14,12 +14,11 @@ class Node {
 */
 
 class Solution {
+    // DFS
     public Node copyRandomList(Node head) {
         // 对于数据结构复制，甭管他怎么变，你就记住最简单的方式：一个哈希表 + 两次遍历。
         // hashmap: 原始節點跟新節點的mapping
         Map<Node, Node> nodeMapping = new HashMap<>();
-        Node dummy = new Node(0);
-        dummy.next = head;
         Node cur = head;
         // 第一輪: 複製節點
         while(cur != null){
