@@ -1,7 +1,3 @@
-
-
-import static java.lang.Integer.valueOf;
-
 class Solution {
     int[] unique;
     Map<Integer, Integer> valToFreq = new HashMap<>();
