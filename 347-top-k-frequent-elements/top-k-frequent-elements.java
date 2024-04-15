@@ -2,7 +2,6 @@ class Solution {
     int[] unique;
     Map<Integer, Integer> valToFreq = new HashMap<>();
     public int[] topKFrequent(int[] nums, int k) {
-        int[] res = new int[k];
         for(int i = 0; i < nums.length; i++){
             valToFreq.put(nums[i], valToFreq.getOrDefault(nums[i], 0) + 1);
         }
@@ -18,12 +17,7 @@ class Solution {
         int target = unique.length - k; 
         int ansIdx = quickSelect(0, unique.length - 1, target);
 
-        // for(int j = unique.length - 1; j >= ansIdx; j--){
-        //     res[j] = unique[j];
-        // }
-
         return Arrays.copyOfRange(unique, target, unique.length);
-        
     }
 
     // target is valToFreq[e]
