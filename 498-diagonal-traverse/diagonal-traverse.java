@@ -18,8 +18,7 @@ class Solution {
                 if(!map.containsKey(r + c)){
                     map.put(r+c, new ArrayList<>());
                 }
-                List<Integer> tmp = map.get(r+c);
-                tmp.add(num);
+                map.get(r+c).add(num);
             }
         }
 
