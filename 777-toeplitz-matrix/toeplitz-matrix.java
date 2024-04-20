@@ -1,4 +1,5 @@
 class Solution {
+    // Solution 1: compare with Down-Right neighbor
     public boolean isToeplitzMatrix(int[][] matrix) {
         // [m, n] -> [m+1, n+1]
         int m = matrix.length;
