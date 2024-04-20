@@ -1,4 +1,5 @@
 class Solution {
+    // Solution 1: sum of indices (extra space)
     public int[] findDiagonalOrder(int[][] mat) {
         // [1, 2, 3]
         // [4, 5, 6]
