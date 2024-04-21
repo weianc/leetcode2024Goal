@@ -19,40 +19,42 @@ class Node {
 */
 
 class Solution {
+    // Solution 2: Optimize DFS
+    // 紀錄原節點到clone node的mapping
     private Map<Node, Node> nodeMap = new HashMap<>();
-    private Set<Integer> visited = new HashSet();
+    // 紀錄DFS遍歷過的節點，防止走回頭路
+    private Set<Integer> visited = new HashSet<>();
     public Node cloneGraph(Node node) {
-        if(node == null) return null;
         traverse(node);
-        traverseForNeighbor(node);
         return nodeMap.get(node);
     }
 
-    private void traverseForNeighbor(Node node){
-        visited.add(node.val);
-        Node copy = nodeMap.get(node);
-        copy.neighbors = new ArrayList<>();
-        List<Node> nb = node.neighbors;
-        for(Node n : nb){
-            Node copyNeighbor = nodeMap.get(n);
-            copy.neighbors.add(copyNeighbor);
-            if(!visited.contains(n.val)){
-                traverseForNeighbor(n);
-            }
-        }
-    }
-
     private void traverse(Node node){
-        if(nodeMap.containsKey(node)){
+        if(node == null){
+            return;
+        }
+        if(visited.contains(node.val)){
             return;
         }
 
-        // clone node first
-        nodeMap.put(node, new Node(node.val));
-        List<Node> neighborNodes = node.neighbors;
-        for(int i = 0; i < neighborNodes.size(); i++){
-            Node cur = neighborNodes.get(i);
-            traverse(cur);
+        // preorder traversal position
+        // 1. 標記當前node為已訪問
+        visited.add(node.val);
+        
+        //  2. clone node
+        if(!nodeMap.containsKey(node)){
+            nodeMap.put(node, new Node(node.val));
+            // no need to initialize neighbors field. 
+            // This is implemented in constructor
+        }
+        Node cloneNode = nodeMap.get(node);
+        List<Node> nb = node.neighbors;
+        for(Node n : nb) {
+            // construct n node first
+            traverse(n);
+            // assign neighbor to current node
+            Node copyNeighbor = nodeMap.get(n);
+            cloneNode.neighbors.add(copyNeighbor);
         }
     }
 }
