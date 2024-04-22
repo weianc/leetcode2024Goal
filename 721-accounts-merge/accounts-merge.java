@@ -43,6 +43,9 @@ class Solution {
         // mark email with visited
         visited.add(email);
         mergeAccount.add(email);
+        if (!adjacencyList.containsKey(email)) {
+            return;
+        }
         
         for(String neighbor : adjacencyList.get(email)){
             if(!visited.contains(neighbor)){
