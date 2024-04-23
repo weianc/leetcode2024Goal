@@ -15,6 +15,8 @@ class Solution {
 
             // 更新迴圈索引
             int minFreq = Math.min(freq1, freq2);
+            // 必須更新encoded裡頭的頻率指針
+            // 如此一下下一次迴圈計算才是有更新過的頻率
             encoded1[i][1] -= minFreq;
             encoded2[j][1] -= minFreq;
             if (encoded1[i][1] == 0) i++;
