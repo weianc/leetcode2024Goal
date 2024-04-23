@@ -4,15 +4,6 @@ class Solution {
         
         int i = 0, j = 0; // Encoded1 和 Encoded2 的索引
         int m = encoded1.length, n = encoded2.length;
-        int totalLength = 0; // 兩個 encoded 陣列的總長度
-        
-        // 計算兩個 encoded 陣列的總長度
-        for (int k = 0; k < m; k++) {
-            totalLength += encoded1[k][1];
-        }
-        for (int k = 0; k < n; k++) {
-            totalLength += encoded2[k][1];
-        }
 
         int prevProdNum = -1; // 上一個產品數
         int count = 0; // 用於計算連續相同產品數的計數器
