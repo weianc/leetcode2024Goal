@@ -17,10 +17,12 @@ class Solution {
         }
 
         // traverse with BFS for each 0 position
+        // O(m * n)
         for(int i = 0; i < m; i++){
             for(int j = 0; j < n; j++){
                 if(grid[i][j] == 0){
                     int[] cur = {i, j};
+                    // O(m * n) each empty land, traverse to all other house
                     int distancesForCur= traverseWithBFS(cur, grid, totalBuilding);
                     if(distancesForCur != -1){
                         globalMin = Math.min(distancesForCur, globalMin);
