@@ -38,9 +38,6 @@ class Solution {
                         count--;
                     }
                     window.put(d, window.get(d) - 1);
-                    // if(window.get(d) == 0){
-                    //     window.remove(d);
-                    // }
                 }
                 // left往前
                 left++;
