@@ -1,15 +1,6 @@
-
-
-import static java.lang.Math.log;
-
 class Solution {
     public int calculate(String s) {
         Stack<Integer> stk = new Stack();
-        Set<Character> set = new HashSet<>();
-        set.add('+');
-        set.add('-');
-        set.add('*');
-        set.add('/');
         char sign = '+';
         int num = 0;
         for(int i = 0; i < s.length(); i++){
@@ -20,7 +11,7 @@ class Solution {
             }
             // need to consider last char in string last char is isDigit
             // or this will not be added into stack
-            if(set.contains(c) || i == s.length() - 1) // sign
+            if(c == '+' || c == '-' || c == '*' || c == '/' || i == s.length() - 1) // sign
             {
                 int pre;
                 if(sign == '+'){
