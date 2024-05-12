@@ -5,7 +5,7 @@ class Solution {
         for(String w : wordDict){
             trie.insert(w);
         }
-        List<String> res = new ArrayList<>();
+
         // Using HashMap to store intermediate results
         Map<Integer, List<String>> memo = new HashMap<>();
         // 2. call DFS to find answer for wordBreak
