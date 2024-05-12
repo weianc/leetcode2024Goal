@@ -1,17 +1,19 @@
 class Solution {
     public int[] findBuildings(int[] heights) {
-        Stack<Integer> stk = new Stack();
+        List<Integer> idxList = new ArrayList<>();
+        int maxHeight = -1; // This is to compare with end of the array
         for(int i = heights.length - 1; i >= 0; i--){
-            if(stk.isEmpty() || heights[i] > heights[stk.peek()]){
-                stk.push(i);
+            if(heights[i] > maxHeight){
+                idxList.add(i);
+                // update maxHeight
+                maxHeight = heights[i];
             }
         }
 
-        int[] ans = new int[stk.size()];
-        int i = 0;
-        while(!stk.isEmpty()){
-            ans[i] = stk.pop();
-            i++;
+        int n = idxList.size();
+        int[] ans = new int[n];
+        for(int i = 0; i < n; i++){
+            ans[i] = idxList.get(n-1-i);
         }
         return ans;
 
