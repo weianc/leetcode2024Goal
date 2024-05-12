@@ -1,5 +1,4 @@
 class Solution {
-
     public List<String> wordBreak(String s, List<String> wordDict) {
         // 1. Add all word into trie
         Trie trie = new Trie();
@@ -7,32 +6,41 @@ class Solution {
             trie.insert(w);
         }
         List<String> res = new ArrayList<>();
+        // Using HashMap to store intermediate results
+        Map<Integer, List<String>> memo = new HashMap<>();
         // 2. call DFS to find answer for wordBreak
-        DFS(s, 0, "", res, trie);
-        return res;
+        return DFS(s, 0, trie, memo);
     }
 
-    private void DFS(String s, int startIdx, String accStr, List<String> res, Trie trie){
+    private List<String> DFS(String s, int startIdx, Trie trie, Map<Integer, List<String>> memo){
+        if (memo.containsKey(startIdx)) {
+            return memo.get(startIdx);
+        }
+
+        List<String> res = new ArrayList<>();
+
+        // Base case
         if(startIdx == s.length()){
             // 表示已經到達given string的終點
             // 將當前sb加入res
-            res.add(accStr);
-            return;
+            res.add("");
+            return res;
         }
 
         for(int i = startIdx; i < s.length(); i++){
             // include i..
             String curr = s.substring(startIdx, i+1);
             if(trie.isPrefixWord(curr)){
-                if(accStr.length() == 0){
-                    // find s[i+1, s.length()-1] is breakable? 
-                    DFS(s, i+1, accStr + curr, res, trie);
-                }
-                else {
-                    DFS(s, i+1, accStr + " " + curr , res, trie);
-                }                
+                List<String> sublist = DFS(s, i+1, trie, memo);
+                for (String sub : sublist) {
+                    res.add(curr + (sub.isEmpty() ? "" : " " + sub));
+                }             
             }
         }
+
+        // Save the result in the memo map
+        memo.put(startIdx, res);
+        return res;
     }
 
     class Trie 
