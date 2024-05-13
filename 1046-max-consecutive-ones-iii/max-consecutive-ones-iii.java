@@ -4,22 +4,22 @@ class Solution {
         int left = 0;
         int right = 0;
         // 紀錄窗口中1的出現次數
-        int sum = 0;
+        int numOfOnes = 0;
         int globalMax = 0;
         // shrink window condition: right - left > k + sum
         while(right < nums.length){
             // 1. enlarge window size
             if(nums[right] == 1){
-                sum++;
+                numOfOnes++;
             }
             right++;
 
             // 2. shrink window
             // 當窗口中需要替換的 0 > k，縮小窗口
             // 超過可以替換或是連續的1數目
-            while(right - left > k + sum){
+            while(right - left > k + numOfOnes){
                 if(nums[left] == 1){
-                    sum--;
+                    numOfOnes--;
                 }
                 left++;
             }
