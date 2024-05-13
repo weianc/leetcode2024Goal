@@ -24,20 +24,6 @@ class Solution {
                 }
             }
         }
-
-        // for(int i = 0; i < psum.length; i++){
-        //     // 計算need，找出psum[i] % k已經在hashmap中出現過的結果
-        //     // 因為可以得出一樣的餘數表示數字相差是k*n，(psum[j]-psum[i])%k = 0
-        //     int need = psum[i] % k; 
-        //     if(psumModKToIndex.containsKey(need)){
-        //         int index = psumModKToIndex.get(need);
-        //         // 並且計算出pSum index差值至少是2
-        //         int length = Math.abs(index - i);
-        //         if(length >= 2){
-        //             return true;
-        //         }
-        //     }
-        // }
         return false;
     }
 }
