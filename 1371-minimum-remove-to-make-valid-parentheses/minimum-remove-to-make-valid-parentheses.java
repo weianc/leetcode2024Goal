@@ -30,9 +30,7 @@ class Solution {
             res = substring + res;
         }
 
-        if(i != 0){
-            res = s.substring(0, i) + res;
-        }
+        res = s.substring(0, i) + res;
 
         return res;
     }
