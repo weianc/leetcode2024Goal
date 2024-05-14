@@ -11,12 +11,19 @@ class MovingAverage {
     }
     
     public double next(int val) {
-        acc += val;
-        acc -= nums[cur];
+        // expand window
+        int prevNum = nums[cur];
         nums[cur] = val;
+        acc += nums[cur];
         if(capacity < nums.length){
             capacity++;
         }
+        else {
+            // should remove previous index
+            acc -= prevNum;
+        }
+        
+        // 當前指針到底的時候，要回頭
         if(cur == nums.length - 1){
             cur = 0;
         }
