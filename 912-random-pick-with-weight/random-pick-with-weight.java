@@ -1,23 +1,20 @@
 class Solution {
-    // position, index
+    // sum , index
     private TreeMap<Integer, Integer> segment = new TreeMap<>();
     private int sum = 0;
 
     public Solution(int[] w) {
         for(int i = 0; i < w.length; i++){
-            segment.put(sum, i);
             sum += w[i];
+            segment.put(sum, i);
         }
     }
     
     public int pickIndex() {
         Random rnd = new Random();
-        if(sum == 0) {
-            int key = segment.firstKey();
-            return segment.get(key);
-        }
-        int randomNum = rnd.nextInt(sum);
-        int startBound = this.segment.floorKey(randomNum);
+        // range [1, sum]
+        int randomNum = 1 + rnd.nextInt(sum);
+        int startBound = this.segment.ceilingKey(randomNum);
         return this.segment.get(startBound);
     }
 }
