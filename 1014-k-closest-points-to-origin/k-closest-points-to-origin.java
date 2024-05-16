@@ -3,15 +3,15 @@ class Solution {
     public int[][] kClosest(int[][] points, int k) {
         int[][] res = new int[k][2];
         PriorityQueue<int[]> maxHeap = new PriorityQueue<>(
-            (a, b) -> b[0]*b[0] + b[1]*b[1] - (a[0]*a[0] + a[1]*a[1]));
+            (a, b) -> distance(b) - distance(a));
         int m = points.length;
         for(int i = 0; i < m; i++){
             int[] pos = points[i];
-            int cur = pos[0] * pos[0] + pos[1] * pos[1];
+            int cur = distance(pos);
 
             if(maxHeap.size() == k){
                 int[] peakPos = maxHeap.peek();
-                int peakVal = peakPos[0]* peakPos[0] + peakPos[1] * peakPos[1];
+                int peakVal = distance(peakPos);
                 if(peakVal > cur){
                     maxHeap.poll();
                     maxHeap.add(pos);
@@ -23,11 +23,16 @@ class Solution {
         }
         
         // find k smallest
+        // You may return the answer in any order.
         int count = 0;
         while(!maxHeap.isEmpty()){
             res[count] = maxHeap.poll();
             count++;
         }
         return res;
+    }
+
+    private int distance(int[] point) {
+        return point[0] * point[0] + point[1] * point[1];
     }
 }
