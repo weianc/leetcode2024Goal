@@ -36,7 +36,8 @@ class Solution {
 
         // 將最後一個結果添加到列表中
         if (prevProdNum != -1) {
-            prodNums.add(Arrays.asList(prevProdNum, count));
+            Integer[] pair = {prevProdNum, count};
+            prodNums.add(Arrays.asList(pair));
         }
 
         return prodNums;
