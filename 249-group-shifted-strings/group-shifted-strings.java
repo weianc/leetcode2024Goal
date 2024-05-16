@@ -21,19 +21,14 @@ class Solution {
     private String pattern(String s){
         StringBuilder pattern = new StringBuilder();
         char[] arr = s.toCharArray();
-        int diff = -1;
 
         for(int i = 0; i < arr.length; i++){
-            if(i == 0){
-                diff = arr[0] - 'a';
-            }
-            int num = arr[i] - 'a' - diff;
+            int num = arr[i] - arr[0];
             if(num < 0){
                 num += 26;
             }
-            char c =  (char) ('a' + num);
-            
-            pattern.append(c);
+            // Append the actual offset value
+            pattern.append(num).append(',');
         }
 
         return pattern.toString();
