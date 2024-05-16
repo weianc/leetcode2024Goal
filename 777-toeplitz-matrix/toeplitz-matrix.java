@@ -8,8 +8,8 @@ class Solution {
         for(int r = 0; r < m; r++){
             for(int c = 0; c < n; c++){
                 // left top neighbor
-                int pr = r - 1;
-                int pc = c - 1;
+                int pr = r + 1;
+                int pc = c + 1;
                 if(isBounded(pr, pc, m, n) && matrix[r][c] != matrix[pr][pc]){
                     return false;
                 }
