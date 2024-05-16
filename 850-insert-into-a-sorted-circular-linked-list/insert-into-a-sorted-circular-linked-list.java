@@ -49,7 +49,8 @@ class Solution {
                 if (cur.val <= insertVal && next.val <= insertVal ||
                         cur.val >= insertVal && next.val >= insertVal) {
                     // tail is cur
-                    // original head is next
+                    cur.next = toInsert;
+                    toInsert.next = next;
                     inserted = true;
                 }
             }
@@ -58,7 +59,7 @@ class Solution {
                 cur = cur.next;
                 next = next.next;
             } else {
-                cur.next = new Node(insertVal, next);
+                //cur.next = new Node(insertVal, next);
                 return head;
             }
         }
