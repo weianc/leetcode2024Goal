@@ -14,34 +14,21 @@
  * }
  */
 class Solution {
-    int max = 0;
+    int diameter = 0;
     public int diameterOfBinaryTree(TreeNode root) {
-        traverse(root);
-        return max;
+        longestPath(root);
+        return diameter;
     }
 
-    private void traverse(TreeNode root){
-        if(root == null) return;
+    private int longestPath(TreeNode root){
+        if(root == null) return 0;
 
-        
-        int left = depth(root.left);
-        int right = depth(root.right);
-        // diameter不需加上root本人
-        int diameter = left + right;
+        int left = longestPath(root.left);
+        int right = longestPath(root.right);
 
         // 更新全局最大路徑
-        max = Math.max(max, diameter);
-
-        traverse(root.left);
-        traverse(root.right);
-    }
-
-    private int depth(TreeNode root){
-        if(root == null) return 0;
-        
-        int left = depth(root.left);
-        int right = depth(root.right);
-
-        return 1 + Math.max(left, right);
+        // 直徑不需要加上root本人
+        diameter = Math.max(diameter, left + right);
+        return Math.max(left, right) + 1;
     }
 }
