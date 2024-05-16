@@ -24,9 +24,14 @@ class Solution {
 
     private void traverse(TreeNode root, double target){
         if(root == null) return;
+        if(root.val == target) {
+            nodeVal = root.val;
+            return;
+        }
         if (Math.abs(nodeVal - target) > Math.abs(root.val - target)){
             nodeVal = root.val;
         }
+        // If there are multiple answers, print the smallest.
         else if (Math.abs(nodeVal - target) == Math.abs(root.val - target)){
             if (nodeVal > root.val){
                 nodeVal = root.val;
