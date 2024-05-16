@@ -67,7 +67,9 @@ class Solution {
         // out of loop
         // if inserted still false
         // case 3: 
-        cur.next = new Node(insertVal, next);
+        if(!inserted){
+            cur.next = new Node(insertVal, next);
+        }
         return head;
     }
 }
