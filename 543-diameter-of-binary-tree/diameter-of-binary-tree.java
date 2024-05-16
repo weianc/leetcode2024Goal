@@ -23,7 +23,7 @@ class Solution {
     private void traverse(TreeNode root){
         if(root == null) return;
 
-        traverse(root.left);
+        
         int left = depth(root.left);
         int right = depth(root.right);
         // diameter不需加上root本人
@@ -32,7 +32,7 @@ class Solution {
         // 更新全局最大路徑
         max = Math.max(max, diameter);
 
-        
+        traverse(root.left);
         traverse(root.right);
     }
 
