@@ -19,7 +19,7 @@ class Node {
 */
 
 class Solution {
-    // Solution 2: Optimize DFS
+    // Solution 2: Optimize DFS with single loop
     // 紀錄原節點到clone node的mapping
     private Map<Node, Node> nodeMap = new HashMap<>();
     // 紀錄DFS遍歷過的節點，防止走回頭路
