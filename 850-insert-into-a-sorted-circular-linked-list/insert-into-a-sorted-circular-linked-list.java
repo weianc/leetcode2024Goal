@@ -67,6 +67,7 @@ class Solution {
         // out of loop
         // if inserted still false
         // case 3: 
+        // 假设链表是 3 -> 3 -> 3 -> 3，你要插入 5。
         if(!inserted){
             cur.next = new Node(insertVal, next);
         }
