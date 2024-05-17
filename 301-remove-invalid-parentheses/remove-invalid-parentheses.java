@@ -12,7 +12,7 @@ class Solution {
         }
         return ans;
     }
-
+    // 
     private void backtrack(char[] arr, int index, StringBuilder sb){
         if(index == arr.length){
             if(isValid(sb.toString())){
@@ -23,6 +23,7 @@ class Solution {
         }
         
         char c = arr[index];
+        // 如果字符不是括号，就一定要保留
         if(c != '(' && c != ')')
         {
             sb.append(c);
@@ -30,10 +31,11 @@ class Solution {
             sb.deleteCharAt(sb.length()-1);
         }
         else {
+            // 选择保留当前括号
             sb.append(arr[index]);
             backtrack(arr, index + 1, sb);
             sb.deleteCharAt(sb.length()-1);
-
+            // 选择不保留当前括号
             backtrack(arr, index + 1, sb);
         }
 
