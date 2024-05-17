@@ -33,6 +33,6 @@ class Solution {
     }
 
     private boolean isCurrentCharValidDigit(String abbr, int i){
-        return i < abbr.length() && abbr.charAt(i) - '0' >= 0 && abbr.charAt(i) - '0' <= 9;
+        return i < abbr.length() && abbr.charAt(i) >= '0' && abbr.charAt(i) <= '9';
     }
 }
