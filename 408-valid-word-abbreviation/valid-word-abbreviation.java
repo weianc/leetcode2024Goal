@@ -3,7 +3,6 @@ class Solution {
         int j = 0;
         int i = 0;
         int num = 0;
-        boolean isFirst = true;
         while(i < abbr.length() && j < word.length()){
             char c = abbr.charAt(i);
             if(!Character.isDigit(c)){
