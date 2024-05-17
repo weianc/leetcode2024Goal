@@ -10,16 +10,15 @@ class Solution {
                 if(word.charAt(j) != abbr.charAt(i)){
                     return false;
                 }
-                else {
-                    j++;
-                }
+                j++;
                 i++;
             }
             else 
             {
-                if(c == '0' && isFirst) return false;
+                // No leading zeroes
+                if(c == '0') return false;
                 
-                while(i < abbr.length() && abbr.charAt(i) - '0' >= 0 && abbr.charAt(i) - '0' <= 9)
+                while(isCurrentCharValidDigit(abbr, i))
                 {
                     int cur = abbr.charAt(i) - '0';
                     num = num * 10 + cur;
@@ -32,5 +31,9 @@ class Solution {
         }
 
         return j == word.length() && i == abbr.length();
+    }
+
+    private boolean isCurrentCharValidDigit(String abbr, int i){
+        return i < abbr.length() && abbr.charAt(i) - '0' >= 0 && abbr.charAt(i) - '0' <= 9;
     }
 }
