@@ -2,7 +2,6 @@ class Solution {
     public int visibleMountains(int[][] peaks) {
         // Transform the array to store left and right coordinates of peaks
         int[][] transformedPeaks = new int[peaks.length][2];
-        
          Map<String, Integer> map = new HashMap<>();
          // Iterate over sorted peaks and count the number of visible peaks
          for(int i = 0; i < peaks.length; i++){
