@@ -23,19 +23,16 @@ class Solution {
          // any upcoming interval if end < curEnd. Then continue
          int maxEnd = Integer.MIN_VALUE;
          int visible = 0;
-         for(int i = 0; i < transformedPeaks.length; i++){
-            int[] p = transformedPeaks[i]; // {startPos, endPos}
-            // Examine p[1] because this is end position
-            if(p[1] <= maxEnd){
-                continue;
+         for (int i = 0; i < transformedPeaks.length; i++) {
+            int[] p = transformedPeaks[i];
+            if (p[1] > maxEnd) {
+                maxEnd = p[1];
+                String curKey = p[0] + ":" + p[1];
+                if (map.get(curKey) == 1) {
+                    visible++;
+                }
             }
-            // end is larger than previousMax
-            maxEnd = p[1];
-            String curKey = p[0] + ":" + p[1];
-            if(map.get(curKey) == 1){
-                visible++;
-            }
-         }
+        }
         return visible;
     }
 }
