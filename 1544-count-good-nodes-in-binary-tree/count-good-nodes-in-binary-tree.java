@@ -14,23 +14,24 @@
  * }
  */
 class Solution {
-    private int visibleCount = 0;
     public int goodNodes(TreeNode root) {
-        dfs(root, null, Integer.MIN_VALUE);
-        return visibleCount;
+        return dfs(root, Integer.MIN_VALUE);
     }
 
-    private void dfs(TreeNode node, TreeNode prev, int pathMax){
-        if(node == null) return;
-        if(prev == null){
-            visibleCount++;
+    private int dfs(TreeNode root, int maxSoFar){
+        int visibleCount = 0;
+        if(root != null){
+            if(root.val >= maxSoFar){
+                visibleCount++;
+                maxSoFar = root.val;
+            }
+            
+            // calculate visibleCount from left and right child
+            int leftVisibleCnt = dfs(root.left, maxSoFar);
+            int rightVisibleCnt = dfs(root.right, maxSoFar);
+            visibleCount += leftVisibleCnt;
+            visibleCount += rightVisibleCnt;
         }
-        else if (node.val >= prev.val && node.val >= pathMax){
-            visibleCount++;
-        }
-
-        pathMax = Math.max(pathMax, node.val);
-        dfs(node.left, node, pathMax);
-        dfs(node.right, node, pathMax);
+        return visibleCount;
     }
 }
