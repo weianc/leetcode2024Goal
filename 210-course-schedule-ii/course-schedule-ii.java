@@ -3,7 +3,7 @@ class Solution {
         // construct adjacency list
         // from: {to1, to2}...
         int[] ans = new int[numCourses];
-        Map<Integer, List<Integer>> graph = buildGraph(numCourses, prerequisites);
+        List<Integer>[] graph = buildGraph(numCourses, prerequisites);
         // calculate indegree
         int[] indegree = new int[numCourses];
         for(int[] edge : prerequisites){
@@ -31,8 +31,7 @@ class Solution {
             int cur = q.poll();
             count++;
             // visit cur node neighbor
-            List<Integer> neighbors = graph.get(cur);
-            for(int next : neighbors){
+            for(int next : graph[cur]){
                 // remove 1 indegree from next
                 indegree[next]--;
                 if(indegree[next] == 0){
@@ -49,20 +48,17 @@ class Solution {
         return ans;
     }
 
-    private Map<Integer, List<Integer>> buildGraph(int numCourses, int[][] prerequisites){
-        Map<Integer, List<Integer>> graph = new HashMap();
+    private List<Integer>[] buildGraph(int numCourses, int[][] prerequisites){
+        List<Integer>[] graph = new ArrayList[numCourses];
         for(int i = 0; i < numCourses; i++){
-            graph.put(i, new ArrayList<>());
+            graph[i] = new ArrayList<>();
         }
 
         // iterate prerequisites
         for(int[] edge : prerequisites){
             int from = edge[1];
             int to = edge[0];
-            if(!graph.containsKey(from)){
-                graph.put(from, new ArrayList<>());
-            }
-            graph.get(from).add(to);
+            graph[from].add(to);
         }
         return graph;
     }
